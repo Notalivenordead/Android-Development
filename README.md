@@ -59,3 +59,29 @@
     </ul>
   </i>
 </h3>
+
+# Author
+<h2>
+  <b>
+    <i>Notalivenordead</i> aka
+    <ul>
+      <li>NotAliveNorDead</li>
+      <li>NotAHuman</li>
+      <li>BDA</li>
+      <li>Busin Dmitriy</li>
+    </ul>
+  </b>
+</h2>
+
+# Links
+<h2>
+   <i>
+    <ul>
+      <li>https://github.com/</li>
+      <li>https://docs.oracle.com/en/java/</li>
+      <li>https://kotlinlang.org/docs/home.html</li>
+      <li>https://dart.dev/docs</li>
+      <li>https://docs.flutter.dev/</li>
+    </ul>
+  </i>
+</h2>
