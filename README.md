@@ -1,9 +1,9 @@
 # Android-Development
 
 <h2>
-  This repo includes files with Java (JDK 23), Kotlin (2.1.0) and Dart languages at first.
+  This repo includes files with Java (<i>JDK 23</i>), Kotlin (<i>2.1.0</i>) and Dart (<i>X.X.X</i>) languages at first.
   After "getting statrted" moment with them here would be some projects on that languages.
-  For now I'm using VSC (Visual Studio Code) with plugins for these PLs
+  For now I'm using VSC (<i>Visual Studio Code</i>) with <i>plugins</i> for these PLs
 </h2>
 
 
