@@ -15,8 +15,21 @@
   <li>using Scanner and function.Consumer</li>
   <li>1 class with same name</li>
   <li>21 void funcs (strings, ints, basic algorithms) + main</li>
-  <li>in main infinite cycle with using other 20 funcs</li>
+  <li>in main - infinite cycle with using other 20 funcs</li>
   <li>you just need to do as said: write srtring or nums (<i>if something is not clear better to check the func</i>)</li>
+  </ol>
+</h2>
+
+# Kotlin development
+<h1>OOP_kotlin</h1>
+  <h2>
+  In this OOP...kt file you can see:
+  <ol>
+  <li>using Scanner with UTF-8</li>
+  <li>about 40 classes and about 90 funcs/methods including main one</li>
+  <li>20 object-oriented tasks were solved</li>
+  <li>in main - infinite cycle with using 30+ classes and their funcs</li>
+  <li>you just need to do as said: write srtring or nums (<i>if something is not clear better to check the funcs and classes, or use ',' instead of '.'</i>)</li>
   </ol>
 </h2>
 
@@ -39,15 +52,16 @@
     </ul>
   </i>
 </h3>
-<h2>Kotlin (ex: QWERTY)</h2>
+<h2>Kotlin (ex: OOP_kotlin.kt)</h2>
 <h3>
   <i>
     <ul>
-      <li>cd Android-Development/QWERTY</li>
-      <li>kotlinc QWERTY.kt -include-runtime -d Main.jar</li>
-      <li>java -jar Main.jar</li>
+      <li>cd Android-Development/OOP_kotlin.kt</li>
+      <li>kotlinc OOP_kotlin.kt -include-runtime -d OOP_kotlin.jar</li>
+      <li>java -jar OOP_kotlin.jar</li>
     </ul>
   </i>
+  You can also use <i>powershall</i> to run .jar using the last command in the list after creating itself by the second one.
 </h3>
 <h2>Dart (ex: QWERTY)</h2>
 <h3>
