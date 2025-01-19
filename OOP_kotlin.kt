@@ -71,29 +71,37 @@ fun task1(scanner: Scanner)
 fun task2(scanner: Scanner)
 {
     println("Введите имя, возраст, пол и зарплату работника (через пробел):")
-    val name = scanner.next()
-    val age = scanner.nextInt()
-    val gender = scanner.next()
-    val salary = scanner.nextDouble()
-    val worker = Worker(name, age, gender, salary)
-    println("Работник создан:")
-    worker.displayInfo()
-    println("Введите количество подчиненных для менеджера:")
-    val subordinatesCount = scanner.nextInt()
-    val subordinates = List(subordinatesCount) { Worker("Подчиненный $it", 20 + it, "М", 1000.0 + it * 100) }
-    val manager = Manager(name, age, gender, salary, subordinates)
-    println("Менеджер создан:")
-    manager.displayInfo()
+    val input = reader.readLine().split(" ")
+    try
+    {
+        val name = input[0]
+        val age = input[1].toInt()
+        val gender = input[2]
+        val salary = input[3].replace(",", ".").toDouble()
+
+        val worker = Worker(name, age, gender, salary)
+        println("Работник создан:")
+        worker.displayInfo()
+
+        println("Введите количество подчиненных для менеджера:")
+        val subordinatesCount = reader.readLine().toInt()
+
+        val subordinates = List(subordinatesCount) {Worker("Подчиненный $it", 20 + it, "М", 1000.0 + it * 100)}
+        val manager = Manager(name, age, gender, salary, subordinates)
+        println("Менеджер создан:")
+        manager.displayInfo()
+    }
+    catch (e: Exception)
+        println("Ошибка: введены некорректные данные. Пожалуйста, введите данные в правильном формате. (зарплату через , а не .)")
 }
 
 // Задача 3: Полиморфизм: Животные
 fun task3(scanner: Scanner)
 {
-    val animals: List<Animal> = listOf(Dog(), Cat(), Cow())
+    val animals: List<Animal> = listOf(Fish(), Bird(), Cow(), Dog(), Cat())
     println("Звуки животных:")
-    for (animal in animals) {
+    for (animal in animals)
         animal.makeSound()
-    }
 }
 
 // Задача 4: Абстрактный класс "Транспорт"
@@ -161,13 +169,10 @@ fun task8(scanner: Scanner)
 // Задача 9: Наследование: Животные и их движения
 fun task9(scanner: Scanner)
 {
-    val fish = Fish()
-    val bird = Bird()
-    val dog = Dog()
+    val animals: List<Animal> = listOf(Fish(), Bird(), Cow(), Dog(), Cat())
     println("Движения животных:")
-    fish.move()
-    bird.move()
-    dog.move()
+    for (animal in animals)
+        animal.move()
 }
 
 // Задача 10: Работа с коллекциями: Университет
