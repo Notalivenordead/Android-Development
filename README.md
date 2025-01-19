@@ -60,6 +60,11 @@
   </i>
 </h3>
 
+# License
+<h2>
+  <b>Apache-2.0 license</b>. Read more in <b>LICENSE</b> file.
+</h2>
+
 # Author
 <h2>
   <b>
