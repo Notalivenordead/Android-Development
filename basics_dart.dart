@@ -161,11 +161,25 @@ final Null Function() task6 = () {
 
 final Null Function() task7 = () {
   print("Введите элементы массива через пробел:");
-  List<int> array = stdin.readLineSync()!.split(' ').map(int.parse).toList();
+  String input = stdin.readLineSync()?.trim() ?? "";
+
+  if (input.isEmpty) {
+    print("Ошибка: Ввод пустой.");
+    return;
+  }
 
   try {
-    if (array.contains(0)) throw Exception("Массив содержит нули.");
-    print("Массив не содержит нулей.");
+    List<int> array = input.split(' ').map((element) {
+      int? number = int.tryParse(element);
+      if (number == null) {
+        throw FormatException("Невозможно преобразовать '$element' в число.");
+      }
+      return number;
+    }).toList();
+
+    if (array.contains(0)) {
+      throw Exception("Массив содержит нули.");
+    }
   } catch (e) {
     print("Ошибка: $e");
   }
@@ -173,11 +187,29 @@ final Null Function() task7 = () {
 
 final Null Function() task8 = () {
   print("Введите число и степень:");
-  double number = double.parse(stdin.readLineSync()!);
-  int exponent = int.parse(stdin.readLineSync()!);
+  String input = stdin.readLineSync()?.trim() ?? "";
 
   try {
+    input = input.replaceAll(',', '.');
+
+    List<String> parts = input.split(' ');
+    if (parts.length != 2) {
+      throw FormatException("Введите ровно два числа: число и степень.");
+    }
+
+    double? number = double.tryParse(parts[0]);
+    if (number == null) {
+      throw FormatException("Невозможно преобразовать '${parts[0]}' в число.");
+    }
+
+    int? exponent = int.tryParse(parts[1]);
+    if (exponent == null) {
+      throw FormatException(
+          "Невозможно преобразовать '${parts[1]}' в степень.");
+    }
+
     if (exponent < 0) throw Exception("Степень не может быть отрицательной.");
+
     print("Результат: ${number.pow(exponent)}");
   } catch (e) {
     print("Ошибка: $e");
@@ -254,10 +286,34 @@ final Null Function() task13 = () {
 
 final Null Function() task14 = () {
   print("Введите пароль:");
-  String password = stdin.readLineSync()!;
+  String password = stdin.readLineSync()?.trim() ?? "";
 
   try {
-    if (password.length < 8) throw Exception("Пароль слишком слабый.");
+    if (password.length < 10) {
+      throw Exception("Пароль должен содержать не менее 10 символов.");
+    }
+
+    final uppercaseRegex = RegExp(r'[A-Z]');
+    if (uppercaseRegex.allMatches(password).length < 3) {
+      throw Exception("Пароль должен содержать не менее 3 заглавных букв.");
+    }
+
+    final lowercaseRegex = RegExp(r'[a-z]');
+    if (lowercaseRegex.allMatches(password).length < 3) {
+      throw Exception("Пароль должен содержать не менее 3 строчных букв.");
+    }
+
+    final specialCharRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
+    if (specialCharRegex.allMatches(password).length < 2) {
+      throw Exception(
+          "Пароль должен содержать не менее 2 специальных символов.");
+    }
+
+    final digitRegex = RegExp(r'[0-9]');
+    if (digitRegex.allMatches(password).length < 2) {
+      throw Exception("Пароль должен содержать не менее 2 цифр.");
+    }
+
     print("Пароль принят.");
   } catch (e) {
     print("Ошибка: $e");
@@ -266,15 +322,60 @@ final Null Function() task14 = () {
 
 final Null Function() task15 = () {
   print("Введите дату в формате dd.MM.yyyy:");
-  String date = stdin.readLineSync()!;
+  String date = stdin.readLineSync()?.trim() ?? "";
 
   try {
-    DateTime parsedDate = DateTime.parse(date.split('.').reversed.join('-'));
+    List<String> parts = date.split('.');
+    if (parts.length != 3) {
+      throw FormatException(
+          "Некорректный формат даты. Используйте dd.MM.yyyy.");
+    }
+
+    int? day = int.tryParse(parts[0]);
+    if (day == null) {
+      throw FormatException("День должен быть числом.");
+    }
+
+    int? month = int.tryParse(parts[1]);
+    if (month == null) {
+      throw FormatException("Месяц должен быть числом.");
+    }
+
+    int? year = int.tryParse(parts[2]);
+    if (year == null) {
+      throw FormatException("Год должен быть числом.");
+    }
+
+    if (month < 1 || month > 12) {
+      throw FormatException("Месяц должен быть от 1 до 12.");
+    }
+
+    if (day < 1 || day > _daysInMonth(year, month)) {
+      throw FormatException(
+          "Некорректное количество дней для указанного месяца и года.");
+    }
+
+    DateTime parsedDate = DateTime(year, month, day);
+
     print("Дата корректна: ${parsedDate.toLocal()}");
   } catch (e) {
-    print("Ошибка: Некорректный формат даты.");
+    print("Ошибка: $e");
   }
 };
+
+int _daysInMonth(int year, int month) {
+  if (month == 2) {
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+      return 29;
+    } else {
+      return 28;
+    }
+  } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+    return 30;
+  } else {
+    return 31;
+  }
+}
 
 final Null Function() task16 = () {
   print("Введите две строки:");
