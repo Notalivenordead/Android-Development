@@ -1,8 +1,7 @@
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class basics_java
-{
+public class basics_java{
 
     private static final Consumer<String> printer = x -> System.out.println(x);
 
@@ -50,11 +49,20 @@ public class basics_java
         }
     }
 
-    // Задача 3: mult table of 5
-    public static void printMultiplicationTable()
-    {
-        for (int i = 1; i <= 10; i++)
-            printMessage("5 * " + i + " = " + (5 * i));
+    // Задача 3: mult table
+    public static void printMultiplicationTable() {
+        StringBuilder header = new StringBuilder("    ");
+        for (int i = 1; i <= 10; i++) 
+            header.append(String.format("%4d", i));
+        printMessage(header.toString());
+    
+        
+        for (int i = 1; i <= 10; i++) {
+            StringBuilder row = new StringBuilder(String.format("%4d", i));
+            for (int j = 1; j <= 10; j++)
+                row.append(String.format("%4d", i * j)); 
+            printMessage(row.toString());
+        }
     }
 
     // Задача 4: Sum [1, n]
