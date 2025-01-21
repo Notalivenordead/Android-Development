@@ -1,25 +1,20 @@
 import 'dart:io';
 
-void main()
-{
-  while (true)
-  {
+void main() {
+  while (true) {
     print("Выберите задачу (1-20) или введите 'exit' или 0 для выхода:");
     String input = stdin.readLineSync()?.trim() ?? "0";
 
-    if (input.toLowerCase() == "exit" || input == "0")
-    {
+    if (input.toLowerCase() == "exit" || input == "0") {
       print("Выход из программы.");
       break;
     }
 
     int? choice = int.tryParse(input);
-    if (choice == null || choice < 0 || choice > 20) 
-    {
+    if (choice == null || choice < 0 || choice > 20) {
       print("Неверный выбор. Пожалуйста, выберите число от 1 до 20.");
       continue;
     }
-  
 
     switch (choice) {
       case 1:
@@ -88,366 +83,279 @@ void main()
   }
 }
 
-final task1 = ()
-{
+final task1 = () {
   print("Введите два числа:");
   int a = int.parse(stdin.readLineSync()!);
   int b = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (a == b) throw Exception("Числа равны.");
     print("Максимум: ${a > b ? a : b}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task2 = ()
-{
+final Null Function() task2 = () {
   print("Введите делимое и делитель:");
   double a = double.parse(stdin.readLineSync()!);
   double b = double.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (b == 0) throw Exception("Деление на ноль недопустимо.");
     print("Результат деления: ${a / b}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task3 = ()
-{
+final Null Function() task3 = () {
   print("Введите строку для конвертации в число:");
   String input = stdin.readLineSync()!;
 
-  try
-  {
+  try {
     int number = int.parse(input);
     print("Конвертированное число: $number");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: Невозможно конвертировать строку в число.");
   }
 };
 
-final task4 = ()
-{
+final Null Function() task4 = () {
   print("Введите возраст:");
   int age = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (age < 0 || age > 150) throw Exception("Недопустимый возраст.");
     print("Возраст корректен: $age");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task5 = ()
-{
+final Null Function() task5 = () {
   print("Введите число для нахождения корня:");
   double number = double.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (number < 0) throw Exception("Число не может быть отрицательным.");
     print("Корень числа: ${customSqrt(number)}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task6 = ()
-{
+final Null Function() task6 = () {
   print("Введите число для вычисления факториала:");
   int number = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (number < 0) throw Exception("Число не может быть отрицательным.");
     int factorial = 1;
     for (int i = 1; i <= number; i++) factorial *= i;
     print("Факториал числа: $factorial");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task7 = ()
-{
+final Null Function() task7 = () {
   print("Введите элементы массива через пробел:");
   List<int> array = stdin.readLineSync()!.split(' ').map(int.parse).toList();
 
-  try
-  {
+  try {
     if (array.contains(0)) throw Exception("Массив содержит нули.");
     print("Массив не содержит нулей.");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task8 = ()
-{
+final Null Function() task8 = () {
   print("Введите число и степень:");
   double number = double.parse(stdin.readLineSync()!);
   int exponent = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (exponent < 0) throw Exception("Степень не может быть отрицательной.");
     print("Результат: ${number.pow(exponent)}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task9 = ()
-{
+final Null Function() task9 = () {
   print("Введите строку и количество символов:");
   String input = stdin.readLineSync()!;
   int length = int.parse(stdin.readLineSync()!);
 
-  try
-  {
-    if (length > input.length) throw Exception("Число символов больше длины строки.");
+  try {
+    if (length > input.length)
+      throw Exception("Число символов больше длины строки.");
     print("Обрезанная строка: ${input.substring(0, length)}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-final task10 = ()
-{
+final Null Function() task10 = () {
   print("Введите элементы массива через пробел:");
   List<int> array = stdin.readLineSync()!.split(' ').map(int.parse).toList();
   print("Введите элемент для поиска:");
   int target = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (!array.contains(target)) throw Exception("Элемент не найден.");
     print("Элемент найден.");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-
-final task11 = () {
+final Null Function() task11 = () {
   print("Введите целое число для конвертации в двоичную систему:");
   int number = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (number < 0) throw Exception("Число не может быть отрицательным.");
     print("Двоичное представление: ${number.toRadixString(2)}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task12 = ()
-{
+final Null Function() task12 = () {
   print("Введите два числа для проверки делимости:");
   int a = int.parse(stdin.readLineSync()!);
   int b = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (b == 0) throw Exception("Деление на ноль недопустимо.");
     print("Делится ли $a на $b: ${a % b == 0}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task13 = ()
-{
+final Null Function() task13 = () {
   print("Введите элементы списка через пробел:");
   List<int> list = stdin.readLineSync()!.split(' ').map(int.parse).toList();
   print("Введите индекс элемента:");
   int index = int.parse(stdin.readLineSync()!);
 
-  try
-  {
-    if (index < 0 || index >= list.length) throw Exception("Индекс выходит за пределы списка.");
+  try {
+    if (index < 0 || index >= list.length)
+      throw Exception("Индекс выходит за пределы списка.");
     print("Элемент по индексу $index: ${list[index]}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task14 = () {
+final Null Function() task14 = () {
   print("Введите пароль:");
   String password = stdin.readLineSync()!;
 
-  try
-  {
+  try {
     if (password.length < 8) throw Exception("Пароль слишком слабый.");
     print("Пароль принят.");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task15 = ()
-{
+final Null Function() task15 = () {
   print("Введите дату в формате dd.MM.yyyy:");
   String date = stdin.readLineSync()!;
 
-  try
-  {
+  try {
     DateTime parsedDate = DateTime.parse(date.split('.').reversed.join('-'));
     print("Дата корректна: ${parsedDate.toLocal()}");
-  } catch (e)
-  {
+  } catch (e) {
     print("Ошибка: Некорректный формат даты.");
   }
 };
 
-
-final task16 = ()
-{
+final Null Function() task16 = () {
   print("Введите две строки:");
   String a = stdin.readLineSync()!;
   String b = stdin.readLineSync()!;
 
-  try
-  {
+  try {
     if (a.isEmpty || b.isEmpty) throw Exception("Строка не может быть пустой.");
     print("Результат конкатенации: ${a + b}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task17 = ()
-{
+final Null Function() task17 = () {
   print("Введите два числа:");
   int a = int.parse(stdin.readLineSync()!);
   int b = int.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (b == 0) throw Exception("Деление на ноль недопустимо.");
     print("Остаток от деления: ${a % b}");
-  }
-  catch (e) 
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task18 = ()
-{
+final Null Function() task18 = () {
   print("Введите число для нахождения корня:");
   double number = double.parse(stdin.readLineSync()!);
 
-  try
-  {
+  try {
     if (number < 0) throw Exception("Число не может быть отрицательным.");
     print("Корень числа: ${customSqrt(number)}");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task19 = ()
-{
+final Null Function() task19 = () {
   print("Введите температуру в Цельсиях:");
   double celsius = double.parse(stdin.readLineSync()!);
 
-  try
-  {
-    if (celsius < -273.15) throw Exception("Температура ниже абсолютного нуля.");
+  try {
+    if (celsius < -273.15)
+      throw Exception("Температура ниже абсолютного нуля.");
     double fahrenheit = celsius * 9 / 5 + 32;
     print("Температура в Фаренгейтах: $fahrenheit");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-final task20 = () {
+final Null Function() task20 = () {
   print("Введите строку:");
   String input = stdin.readLineSync()!;
 
   try {
     if (input.isEmpty) throw Exception("Строка пустая.");
     print("Строка не пустая.");
-  }
-  catch (e)
-  {
+  } catch (e) {
     print("Ошибка: $e");
   }
 };
 
-
-double customSqrt(double number)
-{
+double customSqrt(double number) {
   if (number < 0) throw Exception("Число не может быть отрицательным.");
   double low = 0, high = number;
   double mid = (low + high) / 2;
-  for (int i = 0; i < 100; i++)
-  {
-    if (mid * mid > number) high = mid;
-    else low = mid;
+  for (int i = 0; i < 100; i++) {
+    if (mid * mid > number)
+      high = mid;
+    else
+      low = mid;
     mid = (low + high) / 2;
   }
   return double.parse(mid.toStringAsFixed(4));
 }
 
-
-extension Power on double
-{
-  double pow(int exponent)
-  {
+extension Power on double {
+  double pow(int exponent) {
     double result = 1;
     for (int i = 0; i < exponent; i++) result *= this;
     return result;

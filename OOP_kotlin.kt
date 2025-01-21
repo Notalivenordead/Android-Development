@@ -1,7 +1,9 @@
-import java.util.Scanner
+import java.nio.charset.Charset
+import java.util.*
+
 
 fun main() {
-    val scanner = Scanner(System.`in`, "UTF-8")
+    val scanner = Scanner(System.`in`, Charset.forName("UTF-8"))
     while (true)
     {
         println("Выберите задачу (1-20) или введите 0 для выхода:")
@@ -18,24 +20,24 @@ fun main() {
                 }
                 1 -> task1(scanner)
                 2 -> task2(scanner)
-                3 -> task3(scanner)
-                4 -> task4(scanner)
-                5 -> task5(scanner)
+                3 -> task3()
+                4 -> task4()
+                5 -> task5()
                 6 -> task6(scanner)
-                7 -> task7(scanner)
+                7 -> task7()
                 8 -> task8(scanner)
-                9 -> task9(scanner)
-                10 -> task10(scanner)
+                9 -> task9()
+                10 -> task10()
                 11 -> task11(scanner)
-                12 -> task12(scanner)
-                13 -> task13(scanner)
+                12 -> task12()
+                13 -> task13()
                 14 -> task14(scanner)
                 15 -> task15(scanner)
-                16 -> task16(scanner)
-                17 -> task17(scanner)
-                18 -> task18(scanner)
-                19 -> task19(scanner)
-                20 -> task20(scanner)
+                16 -> task16()
+                17 -> task17()
+                18 -> task18()
+                19 -> task19()
+                20 -> task20()
                 else -> println("Неверный выбор! Попробуйте снова.")
             }
         }
@@ -68,10 +70,9 @@ fun task1(scanner: Scanner)
 }
 
 // Задача 2: Наследование: Класс "Работник" и "Менеджер"
-fun task2(scanner: Scanner)
-{
+fun task2(scanner: Scanner) {
     println("Введите имя, возраст, пол и зарплату работника (через пробел):")
-    val input = reader.readLine().split(" ")
+    val input = scanner.nextLine().split(" ")
     try
     {
         val name = input[0]
@@ -84,19 +85,20 @@ fun task2(scanner: Scanner)
         worker.displayInfo()
 
         println("Введите количество подчиненных для менеджера:")
-        val subordinatesCount = reader.readLine().toInt()
+        val subordinatesCount = scanner.nextInt()
 
-        val subordinates = List(subordinatesCount) {Worker("Подчиненный $it", 20 + it, "М", 1000.0 + it * 100)}
+        val subordinates = List(subordinatesCount) { Worker("Подчиненный $it", 20 + it, "М", 1000.0 + it * 100) }
         val manager = Manager(name, age, gender, salary, subordinates)
         println("Менеджер создан:")
         manager.displayInfo()
     }
-    catch (e: Exception)
+    catch (e: Exception){
         println("Ошибка: введены некорректные данные. Пожалуйста, введите данные в правильном формате. (зарплату через , а не .)")
+    }
 }
 
 // Задача 3: Полиморфизм: Животные
-fun task3(scanner: Scanner)
+fun task3()
 {
     val animals: List<Animal> = listOf(Fish(), Bird(), Cow(), Dog(), Cat())
     println("Звуки животных:")
@@ -105,7 +107,7 @@ fun task3(scanner: Scanner)
 }
 
 // Задача 4: Абстрактный класс "Транспорт"
-fun task4(scanner: Scanner)
+fun task4()
 {
     val car = Car()
     val bike = Bike()
@@ -115,7 +117,7 @@ fun task4(scanner: Scanner)
 }
 
 // Задача 5: Класс "Книга" и "Библиотека"
-fun task5(scanner: Scanner)
+fun task5()
 {
     val library = Library()
     library.addBook(Book("1984", "Джордж Оруэлл", 1949))
@@ -145,7 +147,7 @@ fun task6(scanner: Scanner)
 }
 
 // Задача 7: Счетчик объектов
-fun task7(scanner: Scanner)
+fun task7()
 {
     val counter1 = Counter()
     val counter2 = Counter()
@@ -167,16 +169,16 @@ fun task8(scanner: Scanner)
 }
 
 // Задача 9: Наследование: Животные и их движения
-fun task9(scanner: Scanner)
+fun task9()
 {
-    val animals: List<Animal> = listOf(Fish(), Bird(), Cow(), Dog(), Cat())
+    val animals: List<AnimalWithMove> = listOf(Fish(), Bird(), Cow(), Dog(), Cat())
     println("Движения животных:")
-    for (animal in animals)
-        animal.move()
+    for (an in animals)
+        an.move()
 }
 
 // Задача 10: Работа с коллекциями: Университет
-fun task10(scanner: Scanner)
+fun task10()
 {
     val university = University()
     university.addStudent(Student("Иван", "Группа 1", 4.5))
@@ -188,22 +190,24 @@ fun task10(scanner: Scanner)
 }
 
 // Задача 11: Класс "Магазин"
-fun task11(scanner: Scanner)
-{
+fun task11(scanner: Scanner) {
     val store = Store()
-    store.addProduct(Product("Яблоко", 50.0, 10))
-    store.addProduct(Product("Молоко", 80.0, 5))
-    println("Введите название продукта для поиска:")
-    val productName = scanner.next()
+    store.addProduct(Product("Apple", 50.0, 10))
+    store.addProduct(Product("Milk", 80.0, 5))
+
+    println("Call a good like apple or milk:")
+    val productName = scanner.nextLine().trim().lowercase() 
+
     val product = store.findProductByName(productName)
-    if (product != null) 
+    if (product != null) {
         println("Найден продукт: ${product.name}, цена: ${product.price}, количество: ${product.quantity}")
-    else 
+    } else {
         println("Продукт не найден.")
+    }
 }
 
 // Задача 12: Интерфейс "Платежная система"
-fun task12(scanner: Scanner)
+fun task12()
 {
     val creditCard = CreditCard()
     val payPal = PayPal()
@@ -214,7 +218,7 @@ fun task12(scanner: Scanner)
 }
 
 // Задача 13: Генерация уникальных идентификаторов
-fun task13(scanner: Scanner)
+fun task13()
 {
     println("Сгенерированный ID: ${UniqueID.generateID()}")
     println("Сгенерированный ID: ${UniqueID.generateID()}")
@@ -251,7 +255,7 @@ fun task15(scanner: Scanner)
 }
 
 // Задача 16: Перегрузка операторов: Матрица
-fun task16(scanner: Scanner)
+fun task16()
 {
     val matrix1 = Matrix(arrayOf(doubleArrayOf(1.0, 2.0), doubleArrayOf(3.0, 4.0)))
     val matrix2 = Matrix(arrayOf(doubleArrayOf(5.0, 6.0), doubleArrayOf(7.0, 8.0)))
@@ -262,14 +266,14 @@ fun task16(scanner: Scanner)
 }
 
 // Задача 17: Создание игры с использованием ООП
-fun task17(scanner: Scanner)
+fun task17()
 {
     val game = Game()
     game.start()
 }
 
 // Задача 18: Автоматизированная система заказов
-fun task18(scanner: Scanner)
+fun task18()
 {
     val orderSystem = OrderSystem()
     val customer = Customer("Иван")
@@ -280,7 +284,7 @@ fun task18(scanner: Scanner)
 }
 
 // Задача 19: Наследование: Электроника
-fun task19(scanner: Scanner)
+fun task19()
 {
     val smartphone = Smartphone("Samsung")
     val laptop = Laptop("Lenovo")
@@ -293,7 +297,7 @@ fun task19(scanner: Scanner)
 }
 
 // Задача 20: Игра "Крестики-нолики"
-fun task20(scanner: Scanner)
+fun task20()
 {
     val ticTacToe = TicTacToe()
     ticTacToe.start()
@@ -392,7 +396,11 @@ class Bike : Transport()
 }
 
 
-class Book(val title: String, val author: String, val year: Int)
+class Book(val title: String, val author: String, val year: Int) {
+    override fun toString(): String {
+        return "Книга: \"$title\", автор: $author, год: $year"
+    }
+}
 
 
 class Library
@@ -400,10 +408,8 @@ class Library
     private val books = mutableListOf<Book>()
 
     fun addBook(book: Book) = books.add(book)
-    
 
     fun findByAuthor(author: String): List<Book> = books.filter { it.author == author }
-        
 
     fun findByYear(year: Int): List<Book> = books.filter { it.year == year }
 }
@@ -444,15 +450,18 @@ class Counter
     }
 }
 
+
 abstract class Shape
 {
     abstract fun getArea(): Double
 }
 
+
 class Circle(private val radius: Double) : Shape()
 {
     override fun getArea(): Double = Math.PI * radius * radius
 }
+
 
 class Rectangle(private val width: Double, private val height: Double) : Shape()
 {
@@ -460,7 +469,12 @@ class Rectangle(private val width: Double, private val height: Double) : Shape()
 }
 
 
-class Student(val name: String, val group: String, val grade: Double)
+class Student(val name: String, val group: String, val grade: Double) {
+    override fun toString(): String {
+        return "Студент: $name, группа: $group, средний балл: $grade"
+    }
+}
+
 
 class University
 {
@@ -475,19 +489,28 @@ class University
     fun filterByGrade(minGrade: Double): List<Student> = students.filter { it.grade >= minGrade }
 }
 
-class Product(val name: String, val price: Double, val quantity: Int)
 
-class Store
-{
+class Product(val name: String, val price: Double, val quantity: Int) {
+    override fun toString(): String {
+        return "Продукт: $name, цена: $price, количество: $quantity"
+    }
+}
+
+class Store {
     private val products = mutableListOf<Product>()
 
     fun addProduct(product: Product) = products.add(product)
 
 
-    fun removeProduct(productName: String): Boolean = products.removeIf { it.name == productName }
-    
+    fun removeProduct(productName: String): Boolean =
+        products.removeIf { normalizeString(it.name) == normalizeString(productName) }
 
-    fun findProductByName(productName: String): Product? = products.find { it.name == productName }
+
+    fun findProductByName(productName: String): Product? =
+        products.find { normalizeString(it.name) == normalizeString(productName) }
+
+
+    private fun normalizeString(input: String): String = input.trim().lowercase()
 }
 
 interface PaymentSystem
@@ -614,7 +637,7 @@ class Game
                     println("Игрок $currentPlayer победил!")
                     break
                 }
-                if (board.all { row -> row.all { cell -> cell != ' ' } })
+                if (board.all { it.all { cell -> cell != ' ' } })
                 {
                     println("Ничья!")
                     break
@@ -717,7 +740,7 @@ class TicTacToe
                     println("Игрок $currentPlayer победил!")
                     break
                 }
-                if (board.all { row -> row.all { cell -> cell != ' ' } })
+                if (board.all { it.all { cell -> cell != ' ' } })
                 {
                     println("Ничья!")
                     break
