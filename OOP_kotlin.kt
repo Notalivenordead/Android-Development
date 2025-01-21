@@ -238,16 +238,17 @@ fun task14(scanner: Scanner)
 }
 
 // Задача 15: Комплексные числа
-fun task15(scanner: Scanner)
-{
+fun task15(scanner: Scanner) {
     println("Введите действительную и мнимую часть первого числа (через пробел):")
     val real1 = scanner.nextDouble()
     val imaginary1 = scanner.nextDouble()
     println("Введите действительную и мнимую часть второго числа (через пробел):")
     val real2 = scanner.nextDouble()
     val imaginary2 = scanner.nextDouble()
+
     val num1 = ComplexNumber(real1, imaginary1)
     val num2 = ComplexNumber(real2, imaginary2)
+
     println("Сумма: ${num1.add(num2)}")
     println("Разность: ${num1.subtract(num2)}")
     println("Произведение: ${num1.multiply(num2)}")
@@ -255,12 +256,13 @@ fun task15(scanner: Scanner)
 }
 
 // Задача 16: Перегрузка операторов: Матрица
-fun task16()
-{
+fun task16() {
     val matrix1 = Matrix(arrayOf(doubleArrayOf(1.0, 2.0), doubleArrayOf(3.0, 4.0)))
     val matrix2 = Matrix(arrayOf(doubleArrayOf(5.0, 6.0), doubleArrayOf(7.0, 8.0)))
+
     println("Сумма матриц:")
     println(matrix1 + matrix2)
+
     println("Произведение матриц:")
     println(matrix1 * matrix2)
 }
@@ -572,111 +574,184 @@ class RectangleByPoints(val topLeft: Point, val bottomRight: Point)
 }
 
 class ComplexNumber(val real: Double, val imaginary: Double) {
-    fun add(other: ComplexNumber): ComplexNumber = ComplexNumber(real + other.real, imaginary + other.imaginary)
+    fun add(other: ComplexNumber): ComplexNumber =
+        ComplexNumber(real + other.real, imaginary + other.imaginary)
 
-
-    fun subtract(other: ComplexNumber): ComplexNumber = ComplexNumber(real - other.real, imaginary - other.imaginary)
     
+    fun subtract(other: ComplexNumber): ComplexNumber =
+        ComplexNumber(real - other.real, imaginary - other.imaginary)
 
-    fun multiply(other: ComplexNumber): ComplexNumber
-    {
+
+    fun multiply(other: ComplexNumber): ComplexNumber {
         return ComplexNumber(
             real * other.real - imaginary * other.imaginary,
             real * other.imaginary + imaginary * other.real
         )
     }
 
-    fun divide(other: ComplexNumber): ComplexNumber
-    {
+
+    fun divide(other: ComplexNumber): ComplexNumber {
         val denominator = other.real * other.real + other.imaginary * other.imaginary
         return ComplexNumber(
             (real * other.real + imaginary * other.imaginary) / denominator,
             (imaginary * other.real - real * other.imaginary) / denominator
         )
     }
+
+
+    override fun toString(): String {
+        return "$real + ${imaginary}i"
+    }
 }
 
-class Matrix(private val data: Array<DoubleArray>)
-{
-    operator fun plus(other: Matrix): Matrix
-    {
+class Matrix(private val data: Array<DoubleArray>) {
+    operator fun plus(other: Matrix): Matrix {
         val result = Array(data.size) { DoubleArray(data[0].size) }
-        for (i in data.indices) 
-            for (j in data[0].indices) 
+        for (i in data.indices) {
+            for (j in data[0].indices) {
                 result[i][j] = data[i][j] + other.data[i][j]
-        return Matrix(result)
-    }
-
-    operator fun times(other: Matrix): Matrix
-    {
-        val result = Array(data.size) { DoubleArray(other.data[0].size) }
-        for (i in data.indices) 
-            for (j in other.data[0].indices) 
-                for (k in data[0].indices) 
-                    result[i][j] += data[i][k] * other.data[k][j]
-        return Matrix(result)
-    }
-}
-
-class Game
-{
-    private val board = Array(3) { CharArray(3) { ' ' } }
-    private var currentPlayer = 'X'
-
-    fun start()
-    {
-        while (true) {
-            printBoard()
-            println("Ход игрока $currentPlayer")
-            val (row, col) = readMove()
-            if (board[row][col] == ' ')
-            {
-                board[row][col] = currentPlayer
-                if (checkWin())
-                {
-                    println("Игрок $currentPlayer победил!")
-                    break
-                }
-                if (board.all { it.all { cell -> cell != ' ' } })
-                {
-                    println("Ничья!")
-                    break
-                }
-                currentPlayer = if (currentPlayer == 'X') 'O' else 'X'
             }
-            else
-                println("Клетка уже занята!")
         }
+        return Matrix(result)
     }
 
-    private fun printBoard()
-    {
-        for (row in board)
-        {
-            println(row.joinToString(" | "))
-            println("---------")
+    
+    operator fun times(other: Matrix): Matrix {
+        val result = Array(data.size) { DoubleArray(other.data[0].size) }
+        for (i in data.indices) {
+            for (j in other.data[0].indices) {
+                for (k in data[0].indices) {
+                    result[i][j] += data[i][k] * other.data[k][j]
+                }
+            }
         }
+        return Matrix(result)
     }
 
-    private fun readMove(): Pair<Int, Int>
-    {
-        print("Введите строку и столбец (0-2): ")
-        val input = readLine()!!.split(" ")
-        return Pair(input[0].toInt(), input[1].toInt())
-    }
 
-    private fun checkWin(): Boolean {
-        for (i in 0..2)
-        {
-            if (board[i][0] == currentPlayer && board[i][1] == currentPlayer && board[i][2] == currentPlayer) return true
-            if (board[0][i] == currentPlayer && board[1][i] == currentPlayer && board[2][i] == currentPlayer) return true
+    override fun toString(): String {
+        return data.joinToString("\n") { row ->
+            row.joinToString(" ") { "%.2f".format(it) }
         }
-        if (board[0][0] == currentPlayer && board[1][1] == currentPlayer && board[2][2] == currentPlayer) return true
-        if (board[0][2] == currentPlayer && board[1][1] == currentPlayer && board[2][0] == currentPlayer) return true
-        return false
     }
 }
 
+
+class Weapon(val name: String, val damage: Int) {
+    override fun toString(): String {
+        return "$name (урон: $damage)"
+    }
+}
+
+
+class Player(val name: String, var health: Int, var weapon: Weapon) {
+    fun attack(enemy: Enemy) {
+        println("$name атакует ${enemy.name} с помощью ${weapon.name}!")
+        enemy.takeDamage(weapon.damage)
+    }
+
+    fun takeDamage(damage: Int) {
+        health -= damage
+        if (health <= 0) {
+            println("$name погиб!")
+        } else {
+            println("$name получает $damage урона. Осталось здоровья: $health")
+        }
+    }
+
+    override fun toString(): String {
+        return "$name (здоровье: $health, оружие: $weapon)"
+    }
+}
+
+
+class Enemy(val name: String, var health: Int, val damage: Int) {
+    fun attack(player: Player) {
+        println("$name атакует ${player.name}!")
+        player.takeDamage(damage)
+    }
+
+    fun takeDamage(damage: Int) {
+        health -= damage
+        if (health <= 0) {
+            println("$name повержен!")
+        } else {
+            println("$name получает $damage урона. Осталось здоровья: $health")
+        }
+    }
+
+    override fun toString(): String {
+        return "$name (здоровье: $health, урон: $damage)"
+    }
+}
+
+
+class Game {
+    private val player: Player
+    private val enemies: MutableList<Enemy>
+
+    init {
+        // Создаем игрока и врагов
+        player = Player("Герой", 100, Weapon("Меч", 15))
+        enemies = mutableListOf(
+            Enemy("Гоблин", 30, 10),
+            Enemy("Орк", 50, 15),
+            Enemy("Дракон", 100, 20)
+        )
+    }
+
+    fun start() {
+        println("Добро пожаловать в игру!")
+        println("Ваш персонаж: $player")
+        println("Враги: ${enemies.joinToString(", ")}")
+
+        while (player.health > 0 && enemies.isNotEmpty()) {
+            println("\nВыберите действие:")
+            println("1. Атаковать врага")
+            println("2. Посмотреть состояние")
+            println("3. Выйти из игры")
+
+            when (readLine()?.toIntOrNull()) {
+                1 -> attackEnemy()
+                2 -> println("Состояние: $player")
+                3 -> {
+                    println("Игра завершена.")
+                    return
+                }
+                else -> println("Неверный выбор!")
+            }
+
+            // Враги атакуют игрока
+            if (player.health > 0) {
+                enemies.forEach { it.attack(player) }
+            }
+        }
+
+        if (player.health > 0) {
+            println("Поздравляем! Вы победили всех врагов!")
+        } else {
+            println("Игра окончена. Вы погибли.")
+        }
+    }
+
+    private fun attackEnemy() {
+        println("Выберите врага для атаки:")
+        enemies.forEachIndexed { index, enemy ->
+            println("${index + 1}. $enemy")
+        }
+
+        val choice = readLine()?.toIntOrNull()
+        if (choice != null && choice in 1..enemies.size) {
+            val enemy = enemies[choice - 1]
+            player.attack(enemy)
+            if (enemy.health <= 0) {
+                enemies.removeAt(choice - 1)
+            }
+        } else {
+            println("Неверный выбор!")
+        }
+    }
+}
 
 class Order(val customer: Customer, val products: List<Product>)
 {
