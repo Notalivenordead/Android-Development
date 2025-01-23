@@ -3,7 +3,8 @@
 <h2>
   This repo includes files with Java (<i>JDK 23</i>), Kotlin (<i>2.1.0</i>) and Dart (<i>3.6.1</i>) languages at first.
   After "getting statrted" moment with them here would be some projects on that languages.
-  For now I'm using VSC (<i>Visual Studio Code</i>) with <i>plugins</i> for these PLs
+  For now I'm using VSC (<i>Visual Studio Code</i>) with <i>plugins</i> for these PLs.
+  Beware: files like *.class and *.jar are compiled files of *.java and *.kt respectively. 
 </h2>
 
 
