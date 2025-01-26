@@ -1,0 +1,23 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "lints",
+      "rootUri": "file:///C:/Users/dibus/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "Dart_tasks",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    }
+  ],
+  "generated": "2025-01-26T10:08:04.901074Z",
+  "generator": "pub",
+  "generatorVersion": "3.6.1",
+  "flutterRoot": "file:///C:/Program%20Files/flutter",
+  "flutterVersion": "3.27.2",
+  "pubCache": "file:///C:/Users/dibus/AppData/Local/Pub/Cache"
+}
