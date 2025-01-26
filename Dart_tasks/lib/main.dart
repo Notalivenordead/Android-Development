@@ -6,6 +6,9 @@ import 'package:intl/intl.dart';
 import 'block3/singleton.dart';
 import 'block3/enums.dart';
 
+void main() {}
+
+/* Тут для теста 2-го блока::
 void main() async {
   await initializeDateFormatting('ru_RU');
 
@@ -56,7 +59,8 @@ void main() async {
 
   // Задача 15
   print(dt.DateTimeUtils.getWeekdayName(DateTime.now()));
-}
+  }
+*/
 
 /* Тут для теста 3-блока
 // Задача 1: Проверка Singleton для БД
