@@ -1,4 +1,4 @@
-package Basics;
+package Basics.src;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
