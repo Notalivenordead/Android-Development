@@ -1,0 +1,22 @@
+This is a test file
+This is a test file This is a test file This is a test file
+This is a test file This is a test file
+T
+E
+S
+T
+STD
+DART
+.dart
+66 * 98
+=
+0251478
+exeption
+throw
+e
+try{
+    do try;
+};
+catch(e){
+    do catch;
+};

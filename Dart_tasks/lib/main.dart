@@ -1,12 +1,41 @@
 // ignore_for_file: unused_import
-
+import 'dart:io';
+import 'block1/io_operations.dart' as io;
+import 'block1/decorators.dart';
+import 'block1/performance_benchmark.dart' as bench;
+import 'block1/nio_operations.dart' as nio;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:Dart_tasks/block2/datetime_utils.dart' as dt;
 import 'package:intl/intl.dart';
 import 'block3/singleton.dart';
 import 'block3/enums.dart';
 
-void main() {}
+void main() async {
+  // Создаем тестовые файлы
+  //await File('input.txt').writeAsString('Hello, Dart!\nThis is a test.');
+
+  // Задание 1: Обработка файла
+  print('--- Задание 1: Работа с файлами ---');
+  await io.FileIO.processFile('input.txt', 'output.txt');
+
+  // Задание 2: Декораторы
+  print('\n--- Задание 2: Декораторы ---');
+  final processor = ReplaceSpaceDecorator(
+    UpperCaseDecorator(
+      TrimDecorator(SimpleTextProcessor()),
+    ),
+  );
+  print(processor.process('  Hello World!  ')); // HELLO_WORLD!
+
+  // Задание 3: Сравнение IO/NIO
+  print('\n--- Задание 3: Сравнение производительности ---');
+  await bench.PerformanceBenchmark.measureIO('input.txt', 'output_io.txt');
+  await bench.PerformanceBenchmark.measureNIO('input.txt', 'output_nio.txt');
+
+  // Задание 4: Копирование через NIO
+  print('\n--- Задание 4: Копирование файлов ---');
+  await nio.NIOFileCopier.copyFile('input.txt', 'copy.txt');
+}
 
 /* Тут для теста 2-го блока::
 void main() async {
