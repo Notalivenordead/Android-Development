@@ -30,6 +30,27 @@ Android-Development/
 │   │       └── singleton.dart
 │   ├── pubspec.yaml
 │   └── pubspec.lock
+├── Caesar/
+│   ├── .dart_tool      # Description of project
+│   │   └── package_config.json
+│   ├── bin/
+│   │   └── main.dart
+│   ├── example/      # Input/output txt-s
+│   │   ├── BF_results.txt
+│   │   ├── decrypted.txt
+│   │   ├── input.txt
+│   │   ├── output.txt
+│   │   └── statistical_decrypted.txt
+│   ├── lib/
+│   │   ├── core/ #must-have files
+│   │   │   ├── brute_force.dart      # All variants
+│   │   │   ├── caesar_cipher.dart      # Encryption
+│   │   │   ├── statistical_analysis.dart      # Analytical decryption
+│   │   │   ├── validator.dart      # Checking input
+│   │   ├── utils/ #additional
+|   |      └── file_handler.dart      # Work with files
+│   ├── pubspec.yaml
+│   └── pubspec.lock
 ├── LICENSE
 └── README.md
 ```
@@ -76,6 +97,24 @@ dart run lib/main.dart
 |--------------------|--------------------|
 | `singleton.dart`   | 🏰 Singleton pattern |
 | `enums.dart`       | 🎚️ Enums implementation |
+
+---
+## Caesar
+```bash
+cd Caesar
+dart run bin/main.dart
+```
+
+### 📌 Task Structure
+
+#### 📁 All en-dec files (lib/core, lib/utilits)
+| File                | Description       | Features           |
+|---------------------|-------------------|--------------------|
+| `brute_force.dart`   | See all shifted texts    | Async generation    |
+| `caesar_cipher.dart`| enc-dec transforms    | 1 string func and double using to enc-dec    |
+| `statistical_analysis.dart`| dec by statistics     |   using map    |
+| `validator.dart`| validation     |   key & path cheking in class methods    |
+| `file_handler.dart`| read/write Files     |   async methods    |
 
 ---
 ## 🔧 VSCode Extensions
