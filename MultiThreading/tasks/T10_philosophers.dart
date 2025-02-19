@@ -8,36 +8,52 @@ class Philosopher {
 
   Philosopher(this.id, this.leftFork, this.rightFork);
 
-  void dine() {
+  void dine() async {
     print('Философ $id начал думать.');
-    Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(Duration(seconds: 1));
+
+    while (true) {
       print('Философ $id хочет есть.');
 
       // Запрашиваем левую вилку
       leftFork.send({'action': 'request', 'philosopher': id});
-      rightFork.send({'action': 'request', 'philosopher': id});
+      final leftResponse = await _waitForFork(leftFork);
 
-      // Ждём разрешения на использование вилок
-      Future.wait([
-        _waitForFork(leftFork),
-        _waitForFork(rightFork),
-      ]).then((_) {
-        print('Философ $id ест.');
-        Future.delayed(Duration(seconds: 2), () {
-          // Освобождаем вилки
-          leftFork.send({'action': 'release', 'philosopher': id});
-          rightFork.send({'action': 'release', 'philosopher': id});
-          print('Философ $id закончил есть.');
-          dine(); // Продолжаем цикл
-        });
-      });
-    });
+      if (!leftResponse) {
+        print('Философ $id не смог взять левую вилку.');
+        continue;
+      }
+
+      // Запрашиваем правую вилку
+      rightFork.send({'action': 'request', 'philosopher': id});
+      final rightResponse = await _waitForFork(rightFork);
+
+      if (!rightResponse) {
+        print('Философ $id не смог взять правую вилку.');
+        // Освобождаем левую вилку
+        leftFork.send({'action': 'release', 'philosopher': id});
+        continue;
+      }
+
+      // Едим
+      print('Философ $id ест.');
+      await Future.delayed(Duration(seconds: 2));
+
+      // Освобождаем вилки
+      leftFork.send({'action': 'release', 'philosopher': id});
+      rightFork.send({'action': 'release', 'philosopher': id});
+      print('Философ $id закончил есть.');
+
+      // Думаем
+      print('Философ $id начал думать.');
+      await Future.delayed(Duration(seconds: 1));
+    }
   }
 
-  Future<void> _waitForFork(SendPort fork) async {
+  Future<bool> _waitForFork(SendPort fork) async {
     final receivePort = ReceivePort();
     fork.send({'action': 'wait', 'responsePort': receivePort.sendPort});
-    await receivePort.first; // Ждём разрешения
+    return await receivePort.first as bool;
   }
 }
 
@@ -50,15 +66,17 @@ void forkManager(SendPort initialResponsePort) {
   receivePort.listen((message) {
     try {
       final action = message['action'];
-      final philosopher =
-          message['philosopher'] as int? ?? -1; // Проверяем на null
+      final philosopher = message['philosopher'];
+      final responsePort = message['responsePort'];
 
-      if (philosopher < 0 || philosopher >= forks.length) {
+      if (philosopher == null ||
+          philosopher is! int ||
+          philosopher < 0 ||
+          philosopher >= forks.length) {
         print('Ошибка: некорректный индекс философа ($philosopher)');
+        responsePort?.send(false);
         return;
       }
-
-      final responsePort = message['responsePort'];
 
       if (action == 'request') {
         if (forks[philosopher]) {
@@ -100,8 +118,7 @@ Future<void> task10() async {
 
   // Запускаем философов
   for (final philosopher in philosophers) {
-    Isolate.spawn(
-        (_) => philosopher.dine(), null); // Передаем null как сообщение
+    Isolate.spawn((_) => philosopher.dine(), null);
   }
 
   // Ждём завершения программы
