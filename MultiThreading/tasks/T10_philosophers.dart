@@ -16,22 +16,18 @@ class Philosopher {
       print('Философ $id хочет есть.');
 
       // Запрашиваем левую вилку
-      leftFork.send({'action': 'request', 'philosopher': id});
-      final leftResponse = await _waitForFork(leftFork);
-
+      final leftResponse = await _requestFork(leftFork);
       if (!leftResponse) {
         print('Философ $id не смог взять левую вилку.');
         continue;
       }
 
       // Запрашиваем правую вилку
-      rightFork.send({'action': 'request', 'philosopher': id});
-      final rightResponse = await _waitForFork(rightFork);
-
+      final rightResponse = await _requestFork(rightFork);
       if (!rightResponse) {
         print('Философ $id не смог взять правую вилку.');
         // Освобождаем левую вилку
-        leftFork.send({'action': 'release', 'philosopher': id});
+        _releaseFork(leftFork);
         continue;
       }
 
@@ -40,8 +36,8 @@ class Philosopher {
       await Future.delayed(Duration(seconds: 2));
 
       // Освобождаем вилки
-      leftFork.send({'action': 'release', 'philosopher': id});
-      rightFork.send({'action': 'release', 'philosopher': id});
+      _releaseFork(leftFork);
+      _releaseFork(rightFork);
       print('Философ $id закончил есть.');
 
       // Думаем
@@ -50,10 +46,18 @@ class Philosopher {
     }
   }
 
-  Future<bool> _waitForFork(SendPort fork) async {
+  Future<bool> _requestFork(SendPort fork) async {
     final receivePort = ReceivePort();
-    fork.send({'action': 'wait', 'responsePort': receivePort.sendPort});
+    fork.send({
+      'action': 'request',
+      'philosopher': id,
+      'responsePort': receivePort.sendPort
+    });
     return await receivePort.first as bool;
+  }
+
+  void _releaseFork(SendPort fork) {
+    fork.send({'action': 'release', 'philosopher': id});
   }
 }
 
@@ -65,18 +69,25 @@ void forkManager(SendPort initialResponsePort) {
 
   receivePort.listen((message) {
     try {
-      final action = message['action'];
-      final philosopher = message['philosopher'];
-      final responsePort = message['responsePort'];
-
-      if (philosopher == null ||
-          philosopher is! int ||
-          philosopher < 0 ||
-          philosopher >= forks.length) {
-        print('Ошибка: некорректный индекс философа ($philosopher)');
-        responsePort?.send(false);
+      // Проверяем структуру сообщения
+      if (message is! Map ||
+          message['action'] == null ||
+          message['philosopher'] == null ||
+          message['philosopher'] is! int) {
+        print('Ошибка: некорректное сообщение ($message)');
         return;
       }
+
+      final action = message['action'];
+      final philosopher = message['philosopher'];
+
+      // Проверяем корректность индекса философа
+      if (philosopher < 0 || philosopher >= forks.length) {
+        print('Ошибка: некорректный индекс философа ($philosopher)');
+        return;
+      }
+
+      final responsePort = message['responsePort'];
 
       if (action == 'request') {
         if (forks[philosopher]) {
@@ -87,11 +98,6 @@ void forkManager(SendPort initialResponsePort) {
         }
       } else if (action == 'release') {
         forks[philosopher] = true; // Освобождаем вилку
-      } else if (action == 'wait') {
-        while (!forks[philosopher]) {
-          // Ждём, пока вилка не освободится
-        }
-        responsePort?.send(true);
       }
     } catch (e) {
       print('Ошибка в forkManager: $e');
