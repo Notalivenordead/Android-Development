@@ -104,7 +104,7 @@ Please select a task by entering its number:
 7. Callable and Future
 8. Blocking Queue
 9. Parallel Sorting
-10. Dining Philosophers (endless)
+10. Dining Philosophers
 11. Matrix Multiplication
 12. Timer
 
