@@ -1,53 +1,37 @@
 import 'animal.dart';
-import '../core/plant.dart';
+import 'plant.dart';
 import '../utils/random_utils.dart';
-import '../core/island.dart';
+import 'island.dart';
 import '../utils/config.dart';
+import 'package:synchronized/synchronized.dart';
 
-class Herbivore extends Animal {
+abstract class Herbivore extends Animal {
   Herbivore({
     required Island island,
-    required String name,
-    required double weight,
-    required int maxPerCell,
-    required int speed,
-    required double foodRequired,
     required Gender gender,
-  }) : super(
-          island: island,
-          name: name,
-          weight: weight,
-          maxPerCell: maxPerCell,
-          speed: speed,
-          foodRequired: foodRequired,
-          gender: gender,
-        );
+    required String name,
+  }) : super(island: island, gender: gender, name: name);
 
   @override
   void eat(List<dynamic> entities) {
     for (var entity in entities) {
-      if (entity is Plant && getRandomBool(1.0)) {
-        print('$name ate a Plant');
+      if (entity is Plant) {
+        safePrint('$name ate a Plant');
         currentFood += entity.weight;
         entities.remove(entity);
         break;
       }
     }
-  }
 
-  @override
-  void move(Island island) {
-    final direction = getRandomDirection();
-    final newX = currentX + direction.dx;
-    final newY = currentY + direction.dy;
-
-    if (newX >= 0 && newX < island.width && newY >= 0 && newY < island.height) {
-      final newCell = island.grid[newX][newY];
-      if (newCell.length < maxPerCell) {
-        island.grid[currentX][currentY].remove(this);
-        newCell.add(this);
-        currentX = newX;
-        currentY = newY;
+    // Утки едят гусениц
+    if (runtimeType == Duck) {
+      for (var entity in entities) {
+        if (entity is Caterpillar) {
+          safePrint('$name ate a Caterpillar');
+          currentFood += entity.weight;
+          entities.remove(entity);
+          break;
+        }
       }
     }
   }
@@ -55,28 +39,20 @@ class Herbivore extends Animal {
   @override
   void reproduce() {
     final cell = island.grid[currentX][currentY];
-    final potentialPartners = cell.whereType<Herbivore>().toList();
+    final potentialPartners = cell.whereType<Animal>().where((entity) =>
+        entity.runtimeType == runtimeType &&
+        entity.gender != gender &&
+        entity.currentFood >= foodRequired);
 
     for (var partner in potentialPartners) {
-      if (partner != this &&
-          gender != partner.gender &&
-          currentFood >= foodRequired &&
-          partner.currentFood >= partner.foodRequired) {
-        print('$name reproduced with ${partner.name}');
-        final offspringCount = Config.offspringCount[name] ?? 0;
+      if (currentFood >= foodRequired) {
+        safePrint('$name reproduced with ${partner.name}');
+        final offspringCount = Config.initialPopulation[name] ?? 0;
         for (int i = 0; i < offspringCount; i++) {
-          final newHerbivore = Herbivore(
-            island: island,
-            name: name,
-            weight: weight,
-            maxPerCell: maxPerCell,
-            speed: speed,
-            foodRequired: foodRequired,
-            gender: getRandomGender(),
-          )
+          final newEntity = createOffspring()
             ..currentX = currentX
             ..currentY = currentY;
-          cell.add(newHerbivore);
+          island.addEntity(newEntity, currentX, currentY);
         }
         break;
       }
@@ -84,138 +60,187 @@ class Herbivore extends Animal {
   }
 
   @override
-  void die() {
-    print('$name died');
-    island.grid[currentX][currentY].remove(this);
+  void move() {
+    final direction = getRandomDirection();
+    final newX = currentX + direction.dx;
+    final newY = currentY + direction.dy;
+
+    if (newX >= 0 && newX < island.width && newY >= 0 && newY < island.height) {
+      island.grid[currentX][currentY].remove(this);
+      currentX = newX;
+      currentY = newY;
+      island.grid[currentX][currentY].add(this);
+    }
   }
+
+  @override
+  void dieIfStarving() {
+    if (currentFood <= 0) {
+      safePrint('$name died of starvation');
+      island.grid[currentX][currentY].remove(this);
+    }
+  }
+
+  static void safePrint(String message) {
+    _outputLock.synchronized(() {
+      print(message);
+    });
+  }
+
+  static final Lock _outputLock = Lock();
 }
 
 class Horse extends Herbivore {
-  Horse({required Island island, required Gender gender})
-      : super(
+  Horse({
+    required Island island,
+    required Gender gender,
+  }) : super(
           island: island,
+          gender: gender,
           name: 'Horse',
-          weight: 400,
-          maxPerCell: 20,
-          speed: 4,
-          foodRequired: 60,
-          gender: gender,
-        );
-}
-
-class Deer extends Herbivore {
-  Deer({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Deer',
-          weight: 300,
-          maxPerCell: 20,
-          speed: 4,
-          foodRequired: 50,
-          gender: gender,
-        );
-}
-
-class Rabbit extends Herbivore {
-  Rabbit({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Rabbit',
-          weight: 2,
-          maxPerCell: 150,
-          speed: 2,
-          foodRequired: 0.45,
-          gender: gender,
-        );
-}
-
-class Mouse extends Herbivore {
-  Mouse({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Mouse',
-          weight: 0.05,
-          maxPerCell: 500,
-          speed: 1,
-          foodRequired: 0.01,
-          gender: gender,
-        );
-}
-
-class Goat extends Herbivore {
-  Goat({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Goat',
-          weight: 60,
-          maxPerCell: 140,
-          speed: 3,
-          foodRequired: 10,
-          gender: gender,
-        );
-}
-
-class Sheep extends Herbivore {
-  Sheep({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Sheep',
-          weight: 70,
-          maxPerCell: 140,
-          speed: 3,
-          foodRequired: 15,
-          gender: gender,
-        );
-}
-
-class Boar extends Herbivore {
-  Boar({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Boar',
-          weight: 400,
-          maxPerCell: 50,
-          speed: 2,
-          foodRequired: 50,
-          gender: gender,
-        );
-}
-
-class Buffalo extends Herbivore {
-  Buffalo({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Buffalo',
-          weight: 700,
-          maxPerCell: 10,
-          speed: 3,
-          foodRequired: 100,
-          gender: gender,
-        );
-}
-
-class Duck extends Herbivore {
-  Duck({required Island island, required Gender gender})
-      : super(
-          island: island,
-          name: 'Duck',
-          weight: 1,
-          maxPerCell: 200,
-          speed: 4,
-          foodRequired: 0.15,
-          gender: gender,
         );
 
   @override
+  Horse createOffspring() {
+    return Horse(island: island, gender: getRandomGender());
+  }
+}
+
+class Deer extends Herbivore {
+  Deer({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Deer',
+        );
+
+  @override
+  Deer createOffspring() {
+    return Deer(island: island, gender: getRandomGender());
+  }
+}
+
+class Rabbit extends Herbivore {
+  Rabbit({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Rabbit',
+        );
+
+  @override
+  Rabbit createOffspring() {
+    return Rabbit(island: island, gender: getRandomGender());
+  }
+}
+
+class Mouse extends Herbivore {
+  Mouse({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Mouse',
+        );
+
+  @override
+  Mouse createOffspring() {
+    return Mouse(island: island, gender: getRandomGender());
+  }
+}
+
+class Goat extends Herbivore {
+  Goat({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Goat',
+        );
+
+  @override
+  Goat createOffspring() {
+    return Goat(island: island, gender: getRandomGender());
+  }
+}
+
+class Sheep extends Herbivore {
+  Sheep({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Sheep',
+        );
+
+  @override
+  Sheep createOffspring() {
+    return Sheep(island: island, gender: getRandomGender());
+  }
+}
+
+class Boar extends Herbivore {
+  Boar({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Boar',
+        );
+
+  @override
+  Boar createOffspring() {
+    return Boar(island: island, gender: getRandomGender());
+  }
+}
+
+class Buffalo extends Herbivore {
+  Buffalo({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Buffalo',
+        );
+
+  @override
+  Buffalo createOffspring() {
+    return Buffalo(island: island, gender: getRandomGender());
+  }
+}
+
+class Duck extends Herbivore {
+  Duck({
+    required Island island,
+    required Gender gender,
+  }) : super(
+          island: island,
+          gender: gender,
+          name: 'Duck',
+        );
+
+  @override
+  Duck createOffspring() {
+    return Duck(island: island, gender: getRandomGender());
+  }
+
+  @override
   void eat(List<dynamic> entities) {
+    super.eat(entities);
+
+    // Утки едят гусениц
     for (var entity in entities) {
-      if (entity is Plant && getRandomBool(1.0)) {
-        print('$name ate a Plant');
-        currentFood += entity.weight;
-        entities.remove(entity);
-        break;
-      } else if (entity is Caterpillar && getRandomBool(0.9)) {
-        print('$name ate a Caterpillar');
+      if (entity is Caterpillar) {
+        Herbivore.safePrint('$name ate a Caterpillar');
         currentFood += entity.weight;
         entities.remove(entity);
         break;
@@ -225,14 +250,17 @@ class Duck extends Herbivore {
 }
 
 class Caterpillar extends Herbivore {
-  Caterpillar({required Island island, required Gender gender})
-      : super(
+  Caterpillar({
+    required Island island,
+    required Gender gender,
+  }) : super(
           island: island,
-          name: 'Caterpillar',
-          weight: 0.01,
-          maxPerCell: 1000,
-          speed: 0,
-          foodRequired: 0,
           gender: gender,
+          name: 'Caterpillar',
         );
+
+  @override
+  Caterpillar createOffspring() {
+    return Caterpillar(island: island, gender: getRandomGender());
+  }
 }

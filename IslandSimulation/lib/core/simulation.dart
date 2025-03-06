@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'dart:isolate';
+import 'carnivore.dart';
+import 'herbivore.dart';
 import 'island.dart';
 import 'animal.dart';
 import 'plant.dart';
-import 'carnivore.dart';
-import 'herbivore.dart';
 import '../utils/config.dart';
 import '../utils/threading_utils.dart';
 import 'statistics.dart'; // Для вывода статистики
@@ -19,7 +20,7 @@ class Simulation {
         _maxSimulationTime = Duration(seconds: Config.simulationTimeSeconds);
 
   void start() {
-    Timer.periodic(tickDuration, (timer) {
+    Timer.periodic(tickDuration, (timer) async {
       final currentTime = DateTime.now();
       final elapsedTime = currentTime.difference(_startTime);
 
@@ -31,21 +32,23 @@ class Simulation {
       }
 
       // Жизненный цикл животных и рост растений
-      final tasks = <Function>[];
+      final tasks = <Future<void>>[];
       for (var row in island.grid) {
         for (var cell in row) {
           for (var entity in cell) {
-            tasks.add(() {
+            tasks.add(Future(() {
               if (entity is Animal) {
                 entity.live(island);
               } else if (entity is Plant) {
                 entity.grow();
               }
-            });
+            }));
           }
         }
       }
-      runInThreadPool(tasks);
+
+      // Выполняем задачи параллельно
+      await Future.wait(tasks);
 
       // Вывод статистики каждые 10 секунд
       if (elapsedTime.inSeconds % 10 == 0) {

@@ -1,0 +1,10 @@
+name: island_simulation
+description: A simulation of an island ecosystem with animals and plants.
+version: 1.0.0
+
+environment:
+  sdk: "3.6.1"
+
+dependencies:
+  pool: ^1.5.0 # Для многопоточности
+  synchronized: ^3.0.0 # Для синхронизации потоков
