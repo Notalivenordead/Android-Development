@@ -1,30 +1,23 @@
 import 'dart:io';
-import 'dart:convert';
 import 'island.dart';
 import 'dart:math';
 
 class Statistics {
   static void logPopulationStats(Island island) {
     final stats = island.getPopulationStats();
-    final timestamp = DateTime.now().toString().split('.')[0]; // Текущее время
+    final timestamp = DateTime.now().toString().split('.')[0];
     final output = _formatStatistics(stats);
 
-    // Вывод в консоль
     print('$timestamp\n$output');
-
-    // Запись в файл
     _writeToFile('$timestamp\n$output');
   }
 
   static void logFinalStats(Island island) {
     final stats = island.getPopulationStats();
-    final timestamp = DateTime.now().toString().split('.')[0]; // Текущее время
+    final timestamp = DateTime.now().toString().split('.')[0];
     final output = _formatStatistics(stats, isFinal: true);
 
-    // Вывод в консоль
     print('$timestamp\n$output');
-
-    // Запись в файл
     _writeToFile('$timestamp\n$output');
   }
 
@@ -38,14 +31,11 @@ class Statistics {
       buffer.writeln('--- Current Population Stats ---');
     }
 
-    // Вычисляем максимальную длину названий видов
     final maxNameLength = stats.keys.map((name) => name.length).reduce(max);
 
-    // Форматируем заголовок
     buffer.writeln('| ${'Species'.padRight(maxNameLength)} | Emoji | Count |');
     buffer.writeln('|-${'-'.padRight(maxNameLength, '-')}|-------|-------|');
 
-    // Форматируем строки
     stats.forEach((name, count) {
       final emoji = getEmojiForSpecies(name);
       buffer.writeln(
@@ -57,23 +47,8 @@ class Statistics {
   }
 
   static void _writeToFile(String content) {
-    final timestamp =
-        DateTime.now().toString().replaceAll(':', '-'); // Без двоеточий
-    final file = File('../lib/example/simulation_output_$timestamp.txt');
-    file.writeAsStringSync(content);
-  }
-
-  static void logPopulationStatsAsJson(Island island) {
-    final stats = island.getPopulationStats();
-    final jsonContent = {
-      'timestamp': DateTime.now().toIso8601String(),
-      'population': stats,
-    };
-
-    // Запись в файл
-    final file = File('../lib/example/simulation_stats.json');
-    file.writeAsStringSync('${json.encode(jsonContent)}\n',
-        mode: FileMode.append);
+    final file = File('../lib/example/simulation_output.txt');
+    file.writeAsStringSync(content, mode: FileMode.append);
   }
 
   static String getEmojiForSpecies(String name) {

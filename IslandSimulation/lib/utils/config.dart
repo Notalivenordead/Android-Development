@@ -3,11 +3,11 @@ class Config {
   static const int islandWidth = 20;
   static const int islandHeight = 10;
 
-  // Длительность такта симуляции (в миллисекундах)
-  static const Duration tickDuration = Duration(seconds: 1);
+  // Длительность такта симуляции.
+  static const Duration tickDuration = Duration(seconds: 2);
 
-  // Максимальная длительность симуляции (в секундах, для тестовой версии — 20 секунд)
-  static const int simulationTimeSeconds = 15;
+  // Максимальная длительность симуляции (в секундах)
+  static const int simulationTimeSeconds = 16;
 
   // Начальная популяция животных и растений
   static const Map<String, int> initialPopulation = {
@@ -94,49 +94,49 @@ class Config {
   // Параметры животных (из таблицы 2)
   static final Map<String, Map<String, dynamic>> animalParams = {
     'Wolf': {
-      'weight': 50,
+      'weight': 50.0,
       'maxPerCell': 30,
       'speed': 3,
-      'foodRequired': 8,
+      'foodRequired': 8.0,
     },
     'Boa': {
-      'weight': 15,
+      'weight': 15.0,
       'maxPerCell': 30,
       'speed': 1,
-      'foodRequired': 3,
+      'foodRequired': 3.0,
     },
     'Fox': {
-      'weight': 8,
+      'weight': 8.0,
       'maxPerCell': 30,
       'speed': 2,
-      'foodRequired': 2,
+      'foodRequired': 2.0,
     },
     'Bear': {
-      'weight': 500,
+      'weight': 500.0,
       'maxPerCell': 5,
       'speed': 2,
-      'foodRequired': 80,
+      'foodRequired': 80.0,
     },
     'Eagle': {
-      'weight': 6,
+      'weight': 6.0,
       'maxPerCell': 20,
       'speed': 3,
-      'foodRequired': 1,
+      'foodRequired': 1.0,
     },
     'Horse': {
-      'weight': 400,
+      'weight': 400.0,
       'maxPerCell': 20,
       'speed': 4,
-      'foodRequired': 60,
+      'foodRequired': 60.0,
     },
     'Deer': {
-      'weight': 300,
+      'weight': 300.0,
       'maxPerCell': 20,
       'speed': 4,
-      'foodRequired': 50,
+      'foodRequired': 50.0,
     },
     'Rabbit': {
-      'weight': 2,
+      'weight': 2.0,
       'maxPerCell': 150,
       'speed': 2,
       'foodRequired': 0.45,
@@ -148,31 +148,31 @@ class Config {
       'foodRequired': 0.01,
     },
     'Goat': {
-      'weight': 60,
+      'weight': 60.0,
       'maxPerCell': 140,
       'speed': 3,
-      'foodRequired': 10,
+      'foodRequired': 10.0,
     },
     'Sheep': {
-      'weight': 70,
+      'weight': 70.0,
       'maxPerCell': 140,
       'speed': 3,
-      'foodRequired': 15,
+      'foodRequired': 15.0,
     },
     'Boar': {
-      'weight': 400,
+      'weight': 400.0,
       'maxPerCell': 50,
       'speed': 2,
-      'foodRequired': 50,
+      'foodRequired': 50.0,
     },
     'Buffalo': {
-      'weight': 700,
+      'weight': 700.0,
       'maxPerCell': 10,
       'speed': 3,
-      'foodRequired': 100,
+      'foodRequired': 100.0,
     },
     'Duck': {
-      'weight': 1,
+      'weight': 1.0,
       'maxPerCell': 200,
       'speed': 4,
       'foodRequired': 0.15,
@@ -181,10 +181,10 @@ class Config {
       'weight': 0.01,
       'maxPerCell': 1000,
       'speed': 0,
-      'foodRequired': 0,
+      'foodRequired': 0.0,
     },
     'Plant': {
-      'weight': 1,
+      'weight': 1.0,
       'maxPerCell': 200,
       'growthRate': 0.1,
     },

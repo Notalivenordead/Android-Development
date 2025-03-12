@@ -1,11 +1,8 @@
-import 'dart:io';
-import 'animal.dart';
 import 'carnivore.dart';
 import 'herbivore.dart';
 import 'plant.dart';
 import '../utils/random_utils.dart';
 import '../utils/config.dart';
-import 'package:synchronized/synchronized.dart';
 
 class Island {
   final List<List<List<dynamic>>> grid;
@@ -39,7 +36,6 @@ class Island {
     return grid[x][y];
   }
 
-  // Заселение острова начальной популяцией
   void populate() {
     for (var entry in Config.initialPopulation.entries) {
       final name = entry.key;
@@ -57,7 +53,6 @@ class Island {
     }
   }
 
-  // Создание сущности по имени
   dynamic _createEntity(String name, int x, int y) {
     switch (name) {
       case 'Plant':
@@ -97,91 +92,12 @@ class Island {
     }
   }
 
-  // Добавление сущности в клетку
   void addEntity(dynamic entity, int x, int y) {
     final cell = grid[x][y];
     final maxPerCell = Config.maxPerCell[entity.runtimeType.toString()] ?? 0;
 
     if (cell.whereType<dynamic>().length < maxPerCell) {
       cell.add(entity);
-    }
-
-    // Метод роста растений
-    void growPlants() {
-      for (var row in grid) {
-        for (var cell in row) {
-          for (var entity in cell) {
-            if (entity is Plant) {
-              entity.grow();
-            }
-          }
-        }
-      }
-    }
-
-    // Метод жизненного цикла животных
-    void simulateLifeCycle() {
-      final lock = Lock();
-
-      for (var row in grid) {
-        for (var cell in row) {
-          for (var entity in cell) {
-            if (entity is Animal) {
-              lock.synchronized(() {
-                entity.eat(cell);
-                entity.move();
-                entity.reproduce();
-                entity.dieIfStarving();
-              });
-            }
-          }
-        }
-      }
-    }
-
-    // Получение статистики по популяции
-    Map<String, int> getPopulationStats() {
-      final stats = <String, int>{};
-
-      for (var row in grid) {
-        for (var cell in row) {
-          for (var entity in cell) {
-            stats[entity.name] = (stats[entity.name] ?? 0) + 1;
-          }
-        }
-      }
-
-      return stats;
-    }
-
-    // Вывод статистики в консоль
-    void printStats() {
-      final stats = getPopulationStats();
-      print('--- Population Stats ---');
-      stats.forEach((name, count) {
-        print('$name: $count');
-      });
-      print('------------------------');
-    }
-
-    // Основной метод симуляции
-    void simulate() {
-      final simulationDuration =
-          Duration(seconds: Config.simulationTimeSeconds);
-      final tickDuration = Config.tickDuration;
-
-      final stopwatch = Stopwatch()..start();
-
-      while (stopwatch.elapsed < simulationDuration) {
-        growPlants();
-        simulateLifeCycle();
-        printStats();
-
-        // Ждем до следующего такта
-        sleep(tickDuration);
-      }
-
-      print('Simulation ended.');
     }
   }
 }

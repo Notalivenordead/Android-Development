@@ -1,7 +1,7 @@
 import '../lib/core/island.dart';
-import '../lib/core/statistics.dart';
 import '../lib/core/simulation.dart';
 import '../lib/utils/config.dart';
+import '../lib/core/statistics.dart';
 import 'dart:io';
 
 void main() {
@@ -14,6 +14,8 @@ void main() {
 
   // Заселяем остров начальной популяцией
   island.populate();
+
+  Statistics.logPopulationStats(island);
 
   // Запускаем симуляцию
   print('--- Simulation started ---');

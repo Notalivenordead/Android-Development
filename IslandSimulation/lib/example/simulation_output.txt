@@ -1,0 +1,63 @@
+2025-03-12 14:58:46
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Rabbit      | 🐇 |   100 |
+| Mouse       | 🐁 |   200 |
+| Sheep       | 🐑 |    40 |
+| Caterpillar | 🐛 |   100 |
+| Plant       | 🌱 |   500 |
+| Duck        | 🦆 |    50 |
+| Eagle       | 🦅 |    10 |
+| Deer        | 🦌 |    30 |
+| Wolf        | 🐺 |    10 |
+| Fox         | 🦊 |    20 |
+| Horse       | 🐎 |    30 |
+| Goat        | 🐐 |    40 |
+| Boar        | 🐗 |    20 |
+| Buffalo     | 🐃 |    10 |
+| Boa         | 🐍 |    15 |
+| Bear        | 🐻 |     5 |
+---------------------------------
+2025-03-12 14:58:57
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Wolf        | 🐺 |    17 |
+| Bear        | 🐻 |     7 |
+| Boa         | 🐍 |    22 |
+| Duck        | 🦆 |    61 |
+| Eagle       | 🦅 |    37 |
+| Fox         | 🦊 |    30 |
+| Goat        | 🐐 |    39 |
+| Mouse       | 🐁 |   587 |
+| Deer        | 🦌 |    33 |
+| Plant       | 🌱 |   447 |
+| Horse       | 🐎 |    31 |
+| Rabbit      | 🐇 |    93 |
+| Boar        | 🐗 |    20 |
+| Caterpillar | 🐛 |  5355 |
+| Sheep       | 🐑 |    40 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------
+2025-03-12 14:59:06
+--- Final Simulation Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Bear        | 🐻 |     9 |
+| Fox         | 🦊 |    30 |
+| Eagle       | 🦅 |    95 |
+| Boa         | 🐍 |    24 |
+| Wolf        | 🐺 |    18 |
+| Duck        | 🦆 |    64 |
+| Mouse       | 🐁 |   392 |
+| Caterpillar | 🐛 |  8245 |
+| Deer        | 🦌 |    35 |
+| Horse       | 🐎 |    32 |
+| Plant       | 🌱 |   416 |
+| Rabbit      | 🐇 |    92 |
+| Goat        | 🐐 |    37 |
+| Boar        | 🐗 |    20 |
+| Sheep       | 🐑 |    40 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------

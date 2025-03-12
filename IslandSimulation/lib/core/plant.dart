@@ -2,13 +2,13 @@ import 'island.dart';
 import 'package:synchronized/synchronized.dart';
 
 class Plant {
-  final Island island; // Остров, на котором находится растение
-  final int x; // Координата X
-  final int y; // Координата Y
-  final String name; // Название растения
-  double weight; // Текущий вес растения
-  final double maxWeight; // Максимальный вес растения
-  final double growthRate; // Скорость роста за ход
+  final Island island;
+  final int x;
+  final int y;
+  final String name;
+  double weight;
+  final double maxWeight;
+  final double growthRate;
 
   Plant({
     required this.island,
@@ -33,10 +33,9 @@ class Plant {
   void die() {
     safePrint('$name died at ($x, $y)');
     weight = 0;
-    island.grid[x][y].remove(this); // Удаляем растение из клетки
+    island.grid[x][y].remove(this);
   }
 
-  // Метод проверки состояния растения
   void checkState() {
     if (weight <= 0) {
       die();
@@ -54,5 +53,5 @@ class Plant {
     });
   }
 
-  static final Lock _outputLock = Lock(); // Используем Lock из synchronized
+  static final Lock _outputLock = Lock();
 }

@@ -1,13 +1,11 @@
 import 'dart:async';
-import 'dart:isolate';
 import 'carnivore.dart';
 import 'herbivore.dart';
 import 'island.dart';
 import 'animal.dart';
 import 'plant.dart';
 import '../utils/config.dart';
-import '../utils/threading_utils.dart';
-import 'statistics.dart'; // Для вывода статистики
+import 'statistics.dart';
 
 class Simulation {
   final Island island;
@@ -26,7 +24,7 @@ class Simulation {
 
       if (isSimulationOver(island)) {
         print('--- Simulation stopped ---');
-        Statistics.logFinalStats(island); // Логируем финальную статистику
+        Statistics.logFinalStats(island);
         timer.cancel();
         return;
       }
@@ -47,12 +45,10 @@ class Simulation {
         }
       }
 
-      // Выполняем задачи параллельно
       await Future.wait(tasks);
 
-      // Вывод статистики каждые 10 секунд
       if (elapsedTime.inSeconds % 10 == 0) {
-        Statistics.logPopulationStats(island); // Логируем текущую статистику
+        Statistics.logPopulationStats(island);
       }
     });
   }
