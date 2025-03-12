@@ -1,126 +1,231 @@
-2025-03-12 15:18:51
+2025-03-12 15:24:32
 --- Current Population Stats ---
 | Species     | Emoji | Count |
 |------------|-------|-------|
-| Wolf        | 🐺 |    10 |
 | Mouse       | 🐁 |   200 |
+| Plant       | 🌱 |   500 |
+| Fox         | 🦊 |    20 |
+| Deer        | 🦌 |    30 |
 | Duck        | 🦆 |    50 |
 | Caterpillar | 🐛 |   100 |
-| Plant       | 🌱 |   500 |
+| Wolf        | 🐺 |    10 |
+| Sheep       | 🐑 |    40 |
 | Rabbit      | 🐇 |   100 |
+| Boar        | 🐗 |    20 |
 | Bear        | 🐻 |     5 |
 | Horse       | 🐎 |    30 |
-| Sheep       | 🐑 |    40 |
-| Deer        | 🦌 |    30 |
 | Goat        | 🐐 |    40 |
-| Fox         | 🦊 |    20 |
 | Eagle       | 🦅 |    10 |
-| Boar        | 🐗 |    20 |
 | Boa         | 🐍 |    15 |
 | Buffalo     | 🐃 |    10 |
 ---------------------------------
-2025-03-12 15:19:01
+2025-03-12 15:24:38
 --- Current Population Stats ---
 | Species     | Emoji | Count |
 |------------|-------|-------|
-| Bear        | 🐻 |     6 |
-| Wolf        | 🐺 |    11 |
-| Horse       | 🐎 |    30 |
-| Rabbit      | 🐇 |   100 |
-| Mouse       | 🐁 |   400 |
-| Sheep       | 🐑 |    40 |
-| Duck        | 🦆 |    49 |
-| Caterpillar | 🐛 |   890 |
-| Plant       | 🌱 |   491 |
+| Fox         | 🦊 |    20 |
 | Deer        | 🦌 |    30 |
-| Goat        | 🐐 |    39 |
-| Fox         | 🦊 |    21 |
+| Mouse       | 🐁 |   199 |
+| Duck        | 🦆 |    50 |
+| Caterpillar | 🐛 |  1088 |
+| Plant       | 🌱 |   499 |
+| Wolf        | 🐺 |    10 |
+| Sheep       | 🐑 |    40 |
+| Rabbit      | 🐇 |   100 |
+| Boar        | 🐗 |    20 |
+| Bear        | 🐻 |     5 |
+| Horse       | 🐎 |    30 |
+| Goat        | 🐐 |    40 |
 | Eagle       | 🦅 |    10 |
-| Boa         | 🐍 |    16 |
+| Boa         | 🐍 |    15 |
 | Buffalo     | 🐃 |    10 |
-| Boar        | 🐗 |    19 |
 ---------------------------------
-2025-03-12 15:19:11
+2025-03-12 15:24:43
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Caterpillar | 🐛 |  3071 |
+| Bear        | 🐻 |     7 |
+| Eagle       | 🦅 |    13 |
+| Wolf        | 🐺 |    15 |
+| Fox         | 🦊 |    28 |
+| Duck        | 🦆 |    66 |
+| Mouse       | 🐁 |   196 |
+| Sheep       | 🐑 |    40 |
+| Plant       | 🌱 |   492 |
+| Deer        | 🦌 |    30 |
+| Rabbit      | 🐇 |   101 |
+| Boar        | 🐗 |    20 |
+| Horse       | 🐎 |    30 |
+| Goat        | 🐐 |    40 |
+| Boa         | 🐍 |    15 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------
+2025-03-12 15:24:48
 --- Current Population Stats ---
 | Species     | Emoji | Count |
 |------------|-------|-------|
 | Bear        | 🐻 |     9 |
 | Eagle       | 🦅 |    17 |
-| Horse       | 🐎 |    29 |
-| Mouse       | 🐁 |   191 |
-| Duck        | 🦆 |    58 |
-| Caterpillar | 🐛 |  3259 |
-| Wolf        | 🐺 |    13 |
-| Deer        | 🦌 |    30 |
-| Goat        | 🐐 |    40 |
-| Plant       | 🌱 |   468 |
-| Rabbit      | 🐇 |    94 |
-| Fox         | 🦊 |    24 |
+| Wolf        | 🐺 |    16 |
+| Caterpillar | 🐛 |  3068 |
+| Fox         | 🦊 |    32 |
+| Duck        | 🦆 |    70 |
+| Boa         | 🐍 |    18 |
 | Sheep       | 🐑 |    40 |
-| Boa         | 🐍 |    17 |
-| Buffalo     | 🐃 |    11 |
-| Boar        | 🐗 |    19 |
+| Deer        | 🦌 |    29 |
+| Rabbit      | 🐇 |   100 |
+| Mouse       | 🐁 |   189 |
+| Plant       | 🌱 |   480 |
+| Boar        | 🐗 |    20 |
+| Horse       | 🐎 |    30 |
+| Goat        | 🐐 |    40 |
+| Buffalo     | 🐃 |    10 |
 ---------------------------------
-2025-03-12 15:19:24
+2025-03-12 15:24:53
 --- Current Population Stats ---
 | Species     | Emoji | Count |
 |------------|-------|-------|
-| Eagle       | 🦅 |    50 |
-| Fox         | 🦊 |    35 |
-| Wolf        | 🐺 |    27 |
-| Boa         | 🐍 |    43 |
-| Duck        | 🦆 |    65 |
+| Fox         | 🦊 |    30 |
+| Wolf        | 🐺 |    17 |
+| Caterpillar | 🐛 |  2177 |
 | Bear        | 🐻 |    10 |
-| Caterpillar | 🐛 | 11106 |
-| Mouse       | 🐁 |   172 |
+| Duck        | 🦆 |    66 |
+| Boa         | 🐍 |    39 |
+| Eagle       | 🦅 |    40 |
+| Goat        | 🐐 |    40 |
 | Deer        | 🦌 |    30 |
-| Rabbit      | 🐇 |    90 |
+| Mouse       | 🐁 |   186 |
+| Rabbit      | 🐇 |    96 |
+| Sheep       | 🐑 |    38 |
+| Boar        | 🐗 |    19 |
+| Plant       | 🌱 |   462 |
+| Horse       | 🐎 |    29 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------
+2025-03-12 15:24:58
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Wolf        | 🐺 |    19 |
+| Bear        | 🐻 |    10 |
+| Caterpillar | 🐛 |  4937 |
+| Eagle       | 🦅 |    41 |
+| Fox         | 🦊 |    53 |
+| Duck        | 🦆 |    71 |
+| Boa         | 🐍 |    61 |
+| Mouse       | 🐁 |   379 |
+| Deer        | 🦌 |    30 |
+| Rabbit      | 🐇 |    95 |
+| Sheep       | 🐑 |    38 |
+| Boar        | 🐗 |    18 |
+| Plant       | 🌱 |   444 |
+| Horse       | 🐎 |    29 |
+| Goat        | 🐐 |    42 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------
+2025-03-12 15:25:03
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Wolf        | 🐺 |    20 |
+| Caterpillar | 🐛 | 10003 |
+| Boa         | 🐍 |    45 |
+| Duck        | 🦆 |    76 |
+| Bear        | 🐻 |    10 |
+| Fox         | 🦊 |    73 |
+| Eagle       | 🦅 |    66 |
+| Mouse       | 🐁 |   180 |
+| Deer        | 🦌 |    28 |
+| Sheep       | 🐑 |    39 |
+| Boar        | 🐗 |    18 |
+| Rabbit      | 🐇 |    91 |
+| Plant       | 🌱 |   427 |
+| Goat        | 🐐 |    42 |
+| Horse       | 🐎 |    29 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------
+2025-03-12 15:25:09
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Bear        | 🐻 |    10 |
+| Wolf        | 🐺 |    20 |
+| Caterpillar | 🐛 | 15080 |
+| Duck        | 🦆 |    73 |
+| Eagle       | 🦅 |    54 |
+| Mouse       | 🐁 |   575 |
+| Fox         | 🦊 |    69 |
+| Boa         | 🐍 |    77 |
+| Sheep       | 🐑 |    38 |
+| Boar        | 🐗 |    18 |
+| Deer        | 🦌 |    28 |
+| Rabbit      | 🐇 |    87 |
+| Plant       | 🌱 |   412 |
+| Horse       | 🐎 |    29 |
+| Goat        | 🐐 |    40 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------
+2025-03-12 15:25:14
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Bear        | 🐻 |    10 |
+| Wolf        | 🐺 |    20 |
+| Eagle       | 🦅 |    88 |
+| Caterpillar | 🐛 | 19849 |
+| Fox         | 🦊 |    48 |
+| Duck        | 🦆 |   118 |
+| Boa         | 🐍 |   115 |
+| Sheep       | 🐑 |    37 |
+| Boar        | 🐗 |    18 |
+| Rabbit      | 🐇 |    84 |
+| Mouse       | 🐁 |   169 |
+| Deer        | 🦌 |    27 |
+| Plant       | 🌱 |   393 |
+| Horse       | 🐎 |    29 |
+| Goat        | 🐐 |    39 |
+| Buffalo     | 🐃 |    10 |
+---------------------------------
+2025-03-12 15:25:20
+--- Current Population Stats ---
+| Species     | Emoji | Count |
+|------------|-------|-------|
+| Fox         | 🦊 |    47 |
+| Boa         | 🐍 |   164 |
+| Caterpillar | 🐛 | 23146 |
+| Eagle       | 🦅 |   105 |
+| Bear        | 🐻 |    10 |
+| Wolf        | 🐺 |    20 |
+| Duck        | 🦆 |   124 |
+| Boar        | 🐗 |    18 |
+| Sheep       | 🐑 |    36 |
+| Rabbit      | 🐇 |    83 |
+| Mouse       | 🐁 |   166 |
+| Deer        | 🦌 |    27 |
+| Plant       | 🌱 |   375 |
 | Goat        | 🐐 |    39 |
 | Horse       | 🐎 |    28 |
-| Plant       | 🌱 |   432 |
-| Sheep       | 🐑 |    39 |
-| Buffalo     | 🐃 |    11 |
-| Boar        | 🐗 |    19 |
+| Buffalo     | 🐃 |    10 |
 ---------------------------------
-2025-03-12 15:19:35
---- Current Population Stats ---
-| Species     | Emoji | Count |
-|------------|-------|-------|
-| Eagle       | 🦅 |    43 |
-| Wolf        | 🐺 |    23 |
-| Bear        | 🐻 |    10 |
-| Boa         | 🐍 |    28 |
-| Fox         | 🦊 |    51 |
-| Deer        | 🦌 |    30 |
-| Duck        | 🦆 |   162 |
-| Caterpillar | 🐛 | 15252 |
-| Rabbit      | 🐇 |    83 |
-| Goat        | 🐐 |    37 |
-| Horse       | 🐎 |    28 |
-| Mouse       | 🐁 |   162 |
-| Plant       | 🌱 |   412 |
-| Sheep       | 🐑 |    41 |
-| Buffalo     | 🐃 |    11 |
-| Boar        | 🐗 |    19 |
----------------------------------
-2025-03-12 15:19:41
+2025-03-12 15:25:22
 --- Final Simulation Stats ---
 | Species     | Emoji | Count |
 |------------|-------|-------|
-| Eagle       | 🦅 |    45 |
-| Wolf        | 🐺 |    33 |
-| Fox         | 🦊 |   109 |
-| Duck        | 🦆 |   157 |
-| Caterpillar | 🐛 | 18345 |
-| Boa         | 🐍 |    60 |
+| Fox         | 🦊 |    47 |
+| Boa         | 🐍 |   164 |
+| Caterpillar | 🐛 | 23146 |
+| Eagle       | 🦅 |   105 |
 | Bear        | 🐻 |    10 |
-| Rabbit      | 🐇 |    78 |
-| Deer        | 🦌 |    30 |
-| Goat        | 🐐 |    37 |
+| Wolf        | 🐺 |    20 |
+| Duck        | 🦆 |   124 |
+| Boar        | 🐗 |    18 |
+| Sheep       | 🐑 |    36 |
+| Rabbit      | 🐇 |    83 |
+| Mouse       | 🐁 |   166 |
+| Deer        | 🦌 |    27 |
+| Plant       | 🌱 |   375 |
+| Goat        | 🐐 |    39 |
 | Horse       | 🐎 |    28 |
-| Mouse       | 🐁 |   157 |
-| Plant       | 🌱 |   392 |
-| Sheep       | 🐑 |    38 |
-| Buffalo     | 🐃 |    11 |
-| Boar        | 🐗 |    19 |
+| Buffalo     | 🐃 |    10 |
 ---------------------------------
