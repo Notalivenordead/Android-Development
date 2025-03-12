@@ -16,7 +16,7 @@ abstract class Herbivore extends Animal {
   void eat(List<dynamic> entities) {
     for (var entity in entities) {
       if (entity is Plant) {
-        safePrint('$name ate a Plant');
+        //safePrint('$name ate a Plant');
         currentFood += entity.weight;
         entities.remove(entity);
         break;
@@ -27,7 +27,7 @@ abstract class Herbivore extends Animal {
     if (runtimeType == Duck) {
       for (var entity in entities) {
         if (entity is Caterpillar) {
-          safePrint('$name ate a Caterpillar');
+          //safePrint('$name ate a Caterpillar');
           currentFood += entity.weight;
           entities.remove(entity);
           break;
@@ -46,7 +46,7 @@ abstract class Herbivore extends Animal {
 
     for (var partner in potentialPartners) {
       if (currentFood >= foodRequired) {
-        safePrint('$name reproduced with ${partner.name}');
+        //safePrint('$name reproduced with ${partner.name}');
         final offspringCount = Config.initialPopulation[name] ?? 0;
         for (int i = 0; i < offspringCount; i++) {
           final newEntity = createOffspring()
@@ -76,7 +76,7 @@ abstract class Herbivore extends Animal {
   @override
   void dieIfStarving() {
     if (currentFood <= 0) {
-      safePrint('$name died of starvation');
+      //safePrint('$name died of starvation');
       island.grid[currentX][currentY].remove(this);
     }
   }
@@ -240,7 +240,7 @@ class Duck extends Herbivore {
     // Утки едят гусениц
     for (var entity in entities) {
       if (entity is Caterpillar) {
-        Herbivore.safePrint('$name ate a Caterpillar');
+        //Herbivore.safePrint('$name ate a Caterpillar');
         currentFood += entity.weight;
         entities.remove(entity);
         break;

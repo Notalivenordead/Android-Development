@@ -17,7 +17,7 @@ abstract class Carnivore extends Animal {
       if (entity is Animal && entity.runtimeType != runtimeType) {
         final probability = Config.eatingProbabilities[name]?[entity.name] ?? 0;
         if (getRandomBool(probability / 100)) {
-          safePrint('$name ate ${entity.name}');
+          //safePrint('$name ate ${entity.name}');
           currentFood += entity.weight;
           entities.remove(entity);
           break;
@@ -36,7 +36,7 @@ abstract class Carnivore extends Animal {
 
     for (var partner in potentialPartners) {
       if (currentFood >= foodRequired) {
-        safePrint('$name reproduced with ${partner.name}');
+        //safePrint('$name reproduced with ${partner.name}');
         final offspringCount = Config.initialPopulation[name] ?? 0;
         for (int i = 0; i < offspringCount; i++) {
           final newEntity = createOffspring()
@@ -66,7 +66,7 @@ abstract class Carnivore extends Animal {
   @override
   void dieIfStarving() {
     if (currentFood <= 0) {
-      safePrint('$name died of starvation');
+      //safePrint('$name died of starvation');
       island.grid[currentX][currentY].remove(this);
     }
   }

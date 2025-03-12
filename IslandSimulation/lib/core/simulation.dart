@@ -47,7 +47,7 @@ class Simulation {
 
       await Future.wait(tasks);
 
-      if (elapsedTime.inSeconds % 10 == 0) {
+      if (elapsedTime.inSeconds % Config.tick == 0) {
         Statistics.logPopulationStats(island);
       }
     });

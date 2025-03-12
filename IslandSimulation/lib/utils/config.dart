@@ -4,10 +4,12 @@ class Config {
   static const int islandHeight = 10;
 
   // Длительность такта симуляции.
-  static const Duration tickDuration = Duration(seconds: 2);
+  static const Duration tickDuration = Duration(seconds: 5);
+
+  static const int tick = 5;
 
   // Максимальная длительность симуляции (в секундах)
-  static const int simulationTimeSeconds = 16;
+  static const int simulationTimeSeconds = 50;
 
   // Начальная популяция животных и растений
   static const Map<String, int> initialPopulation = {

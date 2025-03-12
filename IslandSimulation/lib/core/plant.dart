@@ -25,13 +25,13 @@ class Plant {
     if (weight < maxWeight) {
       weight += growthRate;
       if (weight > maxWeight) weight = maxWeight;
-      safePrint('$name grew to $weight kg at ($x, $y)');
+      //safePrint('$name grew to $weight kg at ($x, $y)');
     }
   }
 
   // Метод смерти растения
   void die() {
-    safePrint('$name died at ($x, $y)');
+    //safePrint('$name died at ($x, $y)');
     weight = 0;
     island.grid[x][y].remove(this);
   }

@@ -15,10 +15,9 @@ void main() {
   // Заселяем остров начальной популяцией
   island.populate();
 
-  Statistics.logPopulationStats(island);
-
   // Запускаем симуляцию
   print('--- Simulation started ---');
+  Statistics.logPopulationStats(island);
   final simulation =
       Simulation(island: island, tickDuration: Config.tickDuration);
   simulation.start();
