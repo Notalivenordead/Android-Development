@@ -51,6 +51,27 @@ Android-Development/
 |   |      └── file_handler.dart      # Work with files
 │   ├── pubspec.yaml
 │   └── pubspec.lock
+├── IslandSimulation/
+|  ├── pubspec.lock
+|  ├── pubspec.yaml
+|  ├── dart_tool/
+|  |   └── package_configuration.json
+|  ├── bin/
+|  |   └── main.dart
+|  ├── example/
+|  │   └── simulation_output.txt
+|  ├── utils/
+|  │   ├── config.dart
+|  │   ├── random_utils.dart
+|  │   └── threading_utils.dart
+|  └── core/
+|   |  ├── animal.dart
+|   |  ├── carnivore.dart
+|   |  ├── herbivore.dart
+|   |  ├── island.dart
+|   |  ├── plant.dart
+|   |  ├── simulation.dart
+|   |  └── statistics.dart
 ├── LICENSE
 └── README.md
 ```
